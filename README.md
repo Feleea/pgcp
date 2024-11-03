@@ -20,3 +20,5 @@
  ```bash
  pip install -r requirements.txt
  ```
+
+ pyinstaller --onefile --distpath ".\dist\main\" update_pgcp.py
