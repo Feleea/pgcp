@@ -19,7 +19,7 @@ class atualizar_versao():
 
         # Variaveis
         self.token = dotenv_values()["token"]
-        self.repo_nome = "auto-pgcp"
+        self.repo_nome = "pgcp"
         self.repo_proprietario = "Feleea"
         self.informacoes = self.consultar_repositorio()
 
