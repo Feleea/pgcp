@@ -1,0 +1,30 @@
+Legenda:
+Um tio(~) na frente da palavra, ela está naquelas mensagens que o navegador dá quando um campo obrigatório não foi preenchido
+Dois tios(~~), ela está no retorno do backend, aquela mensagem vermelha ou verde que aparece no sistema quando alguma regra foi/não foi atendida
+
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/user/logon?ReturnUrl=%2Fsite
+-----------------------------------------------------------
+ajudamosinsira
+Fim: https://bahia-hmlg.pglsmais.com.br/site/user/logon?ReturnUrl=%2Fsite
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Create
+-----------------------------------------------------------
+~~updateonreference
+~~field
+~~required
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Create
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Address?companyId=dc71b0be-4c01-444b-bffe-75bcf67b86a7
+-----------------------------------------------------------
+~~islegalperson
+~~field
+~~required
+~~updateonreference
+~~field
+~~required
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Address?companyId=dc71b0be-4c01-444b-bffe-75bcf67b86a7
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Business?companyId=dc71b0be-4c01-444b-bffe-75bcf67b86a7
+-----------------------------------------------------------
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Business?companyId=dc71b0be-4c01-444b-bffe-75bcf67b86a7
+-----------------------------------------------------------

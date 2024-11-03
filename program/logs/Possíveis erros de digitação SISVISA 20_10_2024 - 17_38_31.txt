@@ -1,0 +1,80 @@
+Legenda:
+Um tio(~) na frente da palavra, ela está naquelas mensagens que o navegador dá quando um campo obrigatório não foi preenchido
+Dois tios(~~), ela está no retorno do backend, aquela mensagem vermelha ou verde que aparece no sistema quando alguma regra foi/não foi atendida
+
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/user/logon?ReturnUrl=%2Fsite
+-----------------------------------------------------------
+ajudamosinsira
+Fim: https://bahia-hmlg.pglsmais.com.br/site/user/logon?ReturnUrl=%2Fsite
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Create
+-----------------------------------------------------------
+~~updateonreference
+~~field
+~~required
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Create
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Create?id=1a82ca8e-1019-46ec-87fb-41d7217b19ed&error=True
+-----------------------------------------------------------
+clube/fundo
+page_testepdf
+page_testepdf
+~~hasexemption
+~~field
+~~required
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Create?id=1a82ca8e-1019-46ec-87fb-41d7217b19ed&error=True
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/Business?companyId=1a82ca8e-1019-46ec-87fb-41d7217b19ed
+-----------------------------------------------------------
+×
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/Business?companyId=1a82ca8e-1019-46ec-87fb-41d7217b19ed
+-----------------------------------------------------------
+Inicio: https://bahia-hmlg.pglsmais.com.br/site/Company/CNAE?companyId=1a82ca8e-1019-46ec-87fb-41d7217b19ed
+-----------------------------------------------------------
+requirida
+codigo
+fonoaudiologia
+podologia
+boxes
+bioimagem
+esterelizado
+cme
+obstétrico/
+ccih
+emergência/pronto
+socorro/pronto
+hemodinâmica
+hemoterapia
+farmacêticos
+/água
+indústria/
+indústria/
+indústria/
+indústria/
+indústria/
+saneantes
+domissanitários
+indústria/distribuidor
+parenteral/enteral
+ilpi
+hospitalar/industrial
+oncologia
+/hematopoiéticas
+oncologia/quimioterapia
+oncologia/quimioterapia
+pediátrico
+pmoc
+climatização
+hiperbárica
+enteral
+parenteral
+reprocessamento/processamento
+homecare
+comensais
+refeições/dia
+lactário
+cardiológia
+neonatal
+pediátrica
+Fim: https://bahia-hmlg.pglsmais.com.br/site/Company/CNAE?companyId=1a82ca8e-1019-46ec-87fb-41d7217b19ed
+-----------------------------------------------------------

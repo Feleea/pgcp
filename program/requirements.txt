@@ -1,0 +1,17 @@
+-i https://pypi.org/simple
+
+Selenium==4.25.0
+
+webdriver-manager==4.0.2
+
+reportlab==4.2.5
+
+winotify==1.1.0
+
+bs4==0.0.2
+
+pytest==8.3.3
+
+pytest-xdist==3.6.1
+
+python-dotenv==1.0.1
