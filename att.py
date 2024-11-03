@@ -87,8 +87,9 @@ class atualizar_versao():
         resposta_zip = requests.get(arquivoZip, stream=True)
 
         with zipfile.ZipFile(BytesIO(resposta_zip.content)) as zip_ref:
-            print(zip_ref.filelist)
-            zip_ref.extractall(os.path.dirname(os.path.dirname(__file__)))
+            print(zip_ref.filelist,"\n")
+            dale = print(zip_ref.namelist())
+            zip_ref.extract("Feleea-pgcp-957ce73/dist/main/_internal/", os.path.dirname(os.path.dirname(__file__)))
 
         self.update_version_file()
 
