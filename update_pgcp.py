@@ -5,6 +5,42 @@ import zipfile
 from io import BytesIO
 from dotenv import load_dotenv, dotenv_values
 import time
+import functools
+
+
+def log_atualizacao(mensagem: str):
+
+    def dale(funcao):
+
+        @functools.wraps(funcao)
+        def wrapper(*args, **kwargs):
+            # erros = 5
+            print(f"{mensagem}", end="\r")
+
+            while True:
+
+                try:
+                    result = funcao(*args, **kwargs)
+                    print(f"{mensagem} ... \033[32mConcluído.\033[0m")
+                    break
+
+                except Exception as e:
+                    print("Deu erro")
+                    time.sleep(10)
+                    print(e)
+                    time.sleep(100)
+                    # erros -= 1
+                    # if erros > 0:
+                        # print(f"{mensagem} ... \033[31mErro. Tentando novamente... \033[0m")
+
+                    # else:
+                    #   print("Finalizando o programa...", end="\r")
+
+            return result
+        
+        return wrapper
+    
+    return dale
 
 
 class atualizar_versao():
@@ -12,8 +48,6 @@ class atualizar_versao():
 
         # Versão do programa instalada
         self.versao_instalada = self.get_versao_instalada()
-        print(self.versao_instalada)
-        time.sleep(1)
 
         load_dotenv()
 
@@ -23,17 +57,14 @@ class atualizar_versao():
         self.repo_proprietario = "Feleea"
         self.informacoes = self.consultar_repositorio()
 
-
         # Versão mais recente do programa
-        self.versao_atual = self.informacoes["name"]
+        self.versao_atual = self.informacoes["tag_name"]
 
         # Atualiza o programa
         if self.versao_instalada != self.versao_atual: self.atualizar_arquivos()
-
-        time.sleep(1)
         
 
-
+    @log_atualizacao("Consultando o repositório")
     def consultar_repositorio(self) -> dict:
 
         url = f"https://api.github.com/repos/{self.repo_proprietario}/{self.repo_nome}/releases/latest"
@@ -53,32 +84,30 @@ class atualizar_versao():
         return resposta.json()
 
 
+    @log_atualizacao("Pegando a versão instalada")
     def get_versao_instalada(self):
         """Pega as informações da versão instalada"""
 
         diretorio_raiz = os.path.dirname(os.path.dirname(__file__))
         for dirpath, dirnames, filenames in os.walk(diretorio_raiz):
-            if "program" in dirnames:
-                with open(f"program/version", "r", encoding='utf-8') as file:
+            if "_internal" in dirpath:
+                with open(f"{dirpath}/version", "r", encoding='utf-8') as file:
                     version = file.read().strip()
                     return version
 
-        '''with open(f"program/version", "r", encoding='utf-8') as new_notepad:
-            new_notepad.write("v0.0.0")
-            return '''
 
-
+    @log_atualizacao("Salvando o arquivo version")
     def update_version_file(self):
         """Atualiza as informações da versão instalada"""
 
         diretorio_raiz = os.path.dirname(os.path.dirname(__file__))
         for dirpath, dirnames, filenames in os.walk(diretorio_raiz):
-            if "program" in dirnames:
-                with open(f"program/version", "w", encoding='utf-8') as file:
-                    print(self.versao_atual)
+            if "_internal" in dirpath:
+                with open(f"{dirpath}/version", "w", encoding='utf-8') as file:
                     return file.write(self.versao_atual)
                 
 
+    @log_atualizacao("Atualizando o programa")
     def atualizar_arquivos(self):
         """Baixa todos os arquivos da nova versão para atualização"""
 
@@ -87,9 +116,14 @@ class atualizar_versao():
         resposta_zip = requests.get(arquivoZip, stream=True)
 
         with zipfile.ZipFile(BytesIO(resposta_zip.content)) as zip_ref:
-            print(zip_ref.filelist,"\n")
-            dale = print(zip_ref.namelist())
-            zip_ref.extract("Feleea-pgcp-957ce73/dist/main/_internal/", os.path.dirname(os.path.dirname(__file__)))
+            for file in zip_ref.filelist:
+                if "_internal/" in file.filename:
+                    zip_ref.extract(file, os.path.dirname(os.path.dirname(__file__)))
+
+            for file in zip_ref.filelist:
+                if "main.exe" in file.filename:
+                    zip_ref.extract(file, os.path.dirname(os.path.dirname(__file__)))
+                    break
 
         self.update_version_file()
 
